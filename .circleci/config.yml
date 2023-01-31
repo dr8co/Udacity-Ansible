@@ -69,5 +69,5 @@ workflows:
   create_resources:
     jobs:
       - create_infrastructure
-      #- configure_infrastructure
+      - configure_infrastructure
       #- smoke_test
