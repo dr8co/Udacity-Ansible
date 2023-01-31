@@ -1,5 +1,15 @@
 version: 2.1
 
+commands:
+  # Exercise - Rollback
+  destroy_environment:
+    steps:
+      - run:
+          name: Destroy environment
+          when: on_fail
+          command: |
+            aws cloudformation delete-stack --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:7}
+
 jobs:
   create_infrastructure:
     docker:
@@ -12,7 +22,7 @@ jobs:
           command: |
             aws cloudformation deploy \
             --template-file template.yml \
-            --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
+            --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:7} \
             --region us-west-2
 
   # Exercise: Config and Deployment
@@ -22,7 +32,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-          fingerprints: ["65:e6:4e:4a:ee:ed:14:ed:ab:34:ae:28:0c:a6:e0:ab"]
+          fingerprints: [ "65:e6:4e:4a:ee:ed:14:ed:ab:34:ae:28:0c:a6:e0:ab" ]
       - run:
           name: Install Ansible
           command: |
@@ -37,6 +47,11 @@ jobs:
     docker:
       - image: alpine:latest
     steps:
+      - run:
+          name: Test job
+          command: return 1
+      - destroy_environment
+
       - run: apk add --update curl
       - run:
           name: smoke test
@@ -53,6 +68,6 @@ jobs:
 workflows:
   create_resources:
     jobs:
-      #- create_infrastructure
+      - create_infrastructure
       #- configure_infrastructure
-      - smoke_test
+      #- smoke_test
