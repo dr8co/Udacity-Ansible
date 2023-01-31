@@ -1,0 +1,21 @@
+version: 2.1
+
+jobs:
+  create_infrastructure:
+    docker:
+      - image: amazon/aws-cli
+
+    steps:
+      - checkout
+      - run:
+          name: Create CloudFormation Stack
+          command: |
+            aws cloudformation deploy \
+            --template-file template.yml \
+            --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
+            --region us-west-2
+
+workflows:
+  create_resources:
+    jobs:
+      - create_infrastructure
