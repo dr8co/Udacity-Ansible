@@ -8,8 +8,10 @@
 that can be used to `automate` the `deployment` of applications and services.
 It is `agentless` and `uses SSH` to connect to remote hosts.
 
-Ansible is written in Python and is open source.
-It is a very popular tool for DevOps and is used by many companies.
+Ansible is written in [Python](https://www.python.org/) and is open source.
+It is a very popular tool for [DevOps](https://aws.amazon.com/devops/what-is-devops)
+and is used by many companies.
 
 This repository contains tasks and exercises to practise
-CI/CD on AWS using Ansible, as per UdaCity's DevOps Nanodegree.
+CI/CD on [AWS](https://aws.amazon.com/) using Ansible, as per
+[Udacity's DevOps Nanodegree](https://www.udacity.com/course/cloud-dev-ops-nanodegree--nd9991).
