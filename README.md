@@ -4,9 +4,10 @@
 <img alt="Ansible" src="./logo.png" title="Ansible logo"/>
 </p>
 
-Ansible is a `configuration management` tool that can be used to
-automate the deployment of applications and services.
+[Ansible](https://www.ansible.com/ "Ansible website") is a `configuration management` tool
+that can be used to `automate` the `deployment` of applications and services.
 It is `agentless` and `uses SSH` to connect to remote hosts.
+
 Ansible is written in Python and is open source.
 It is a very popular tool for DevOps and is used by many companies.
 
